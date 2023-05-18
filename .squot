@@ -1,0 +1,9 @@
+OrderedDictionary {
+	'packages/SVG-Morphic.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-Level.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-UI.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-Items.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-DataStructure.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-Resources.package' : #SquotCypressCodeSerializer,
+	'packages/Scu007-Core.package' : #SquotCypressCodeSerializer
+}
