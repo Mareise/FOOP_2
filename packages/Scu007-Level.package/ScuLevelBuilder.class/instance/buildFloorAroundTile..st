@@ -5,4 +5,4 @@ buildFloorAroundTile: aTile
 	neighbors := (aTile neighbors values select: [:x | x~= nil]) shuffled.
 	{ neighbors first. neighbors second. neighbors third. } do: [:neighbor | 
 		self removeWallFloorSlimeFromTile: neighbor.
-		neighbor checkIn: (ScuFloor newIn: self game)].
+		neighbor checkIn: (ScuStreet newIn: self game)].

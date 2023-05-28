@@ -1,0 +1,15 @@
+{
+	"category" : "Scu007-Items",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"direction",
+		"connectedPortal" ],
+	"name" : "ScuExit",
+	"pools" : [
+		 ],
+	"super" : "ScuItem",
+	"type" : "normal" }

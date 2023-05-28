@@ -1,0 +1,14 @@
+{
+	"category" : "Scu007-Items",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		 ],
+	"name" : "ScuTrack",
+	"pools" : [
+		 ],
+	"super" : "ScuItem",
+	"type" : "normal" }

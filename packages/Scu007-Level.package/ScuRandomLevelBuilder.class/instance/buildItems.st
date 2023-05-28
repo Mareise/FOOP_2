@@ -1,7 +1,74 @@
 builder
-buildItems 
-	"First fill the map with walls, then create floor randomly, then remove big aggregations of floor tiles (rooms)."
-	self createWalls.
-	1 to: (self game configuration numberOfRandomPaths) do: [:x | self createFloors].
-	self createBorderWalls.
-	self createMoreWalls.
+buildItems
+	|streetData subwayData lines streetLayout subwayLayout i|
+	streetData := '1,2,1,1,1,1,1,2,1,1,1,1,1,0,0,0,0,1,1,2,
+1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,0,1,
+1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,
+1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,1,
+1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,2,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+0,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,
+0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+0,0,0,0,0,1,0,0,0,0,0,0,2,0,0,0,0,0,0,1,
+0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,0,0,0,0,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+1,2,1,1,1,1,0,0,0,0,0,0,2,0,0,0,0,0,0,0'.
+	subwayData := '0,3,4,4,4,4,4,3,0,0,0,0,0,0,0,0,0,0,4,3,
+0,4,0,0,0,0,0,0,0,5,5,5,3,0,0,0,0,0,4,0,
+0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,4,0,
+0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,3,0,
+0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,4,0,
+0,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,4,0,
+0,4,4,4,4,4,4,3,4,0,0,0,5,0,0,0,0,0,4,3,
+0,0,0,0,0,0,0,0,4,0,0,0,5,0,0,0,0,0,0,4,
+0,0,0,0,0,0,0,0,4,0,0,0,3,0,0,0,0,0,0,4,
+0,0,0,0,0,3,0,0,4,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,4,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,4,3,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+0,3,4,4,4,4,4,4,4,4,4,4,3,4,4,4,4,4,4,4'.
+
+	lines := streetData lines.
+	streetLayout := Array new: 20.
+	i := 1.
+	lines do: [:line | 
+		| csvRow | csvRow := line findTokens: ','. 
+		streetLayout at: i put: csvRow asArray.
+		i := i + 1]. 
+	
+	lines := subwayData lines.
+	subwayLayout := Array new: 20.
+	i := 1.
+	lines do: [:line | 
+		| csvRow | csvRow := line findTokens: ','. 
+		subwayLayout at: i put: csvRow asArray.
+		i := i + 1]. 
+
+	self tiles withIndicesDo: [:tile :y :x | 
+		(((streetLayout  at: y) at: x) = '0') 
+			ifTrue: [tile checkIn: (ScuWall newIn: self game)].
+		(((streetLayout  at: y) at: x) = '1') 
+			ifTrue: [tile checkIn: (ScuStreet newIn: self game)].
+		(((streetLayout  at: y) at: x) = '2') 
+			ifTrue: [tile checkIn: (ScuExit newIn: self game)].
+		(((subwayLayout  at: y) at: x) = '3') 
+			ifTrue: [tile checkIn: (ScuExit newIn: self game)].
+		(((subwayLayout  at: y) at: x) = '4') 
+			ifTrue: [tile checkIn: (ScuTrack newIn: self game)].
+		(((subwayLayout  at: y) at: x) = '5') 
+			ifTrue: [tile checkIn: (ScuTrack newIn: self game)].
+		].

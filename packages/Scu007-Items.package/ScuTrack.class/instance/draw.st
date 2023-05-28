@@ -1,0 +1,3 @@
+render
+draw
+	self.
