@@ -2,7 +2,7 @@
 	"class" : {
 		"newWithGame:" : "Matthias Springer 2/6/2012 18:08:52.221" },
 	"instance" : {
-		"canIEnterWithPermissions:default:" : "Matthias Springer 1/31/2012 22:28:04.639",
+		"canIEnterWithPermissions:default:" : "Florian Schabasser 5/28/2023 19:03",
 		"checkIn:" : "dominik 1/21/2012 11:17:49.662",
 		"checkIn:withPermissions:default:" : "Matthias Springer 1/31/2012 13:55:50.994",
 		"checkIn:withPositionChange:" : "Matthias Springer 1/31/2012 13:56:02.497",

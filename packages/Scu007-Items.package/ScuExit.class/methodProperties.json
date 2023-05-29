@@ -3,6 +3,7 @@
 		"newFirstWithDirection:" : "Matthias Springer 2/6/2012 17:54:07.576",
 		"newSecondWithDirection:withFirst:" : "Matthias Springer 2/6/2012 17:54:53.866" },
 	"instance" : {
+		"checkedIn:" : "Florian Schabasser 5/28/2023 18:54",
 		"connectPortal:with:" : "dominik 2/9/2012 16:01:36.993",
 		"connectedPortal" : "Matthias Springer 1/31/2012 22:20:41.289",
 		"connectedPortal:" : "Matthias Springer 1/31/2012 21:56:05.817",
@@ -11,6 +12,6 @@
 		"enterPermissions" : "Matthias Springer 1/31/2012 22:20:52.898",
 		"itemSymbol" : "Matthias Springer 1/31/2012 22:20:58.802",
 		"oppositeDirection" : "Matthias Springer 1/31/2012 22:20:43.504",
-		"placeAsSecondPortalWithStartAt:" : "Matthias Springer 1/31/2012 22:20:56.683",
+		"placeAsSecondPortalWithStartAt:" : "Florian Schabasser 5/28/2023 18:26",
 		"variation" : "Matthias Springer 1/31/2012 22:20:50.561",
 		"zIndex" : "Matthias Springer 1/31/2012 22:20:46.449" } }

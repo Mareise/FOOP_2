@@ -1,4 +1,4 @@
 permits
 enterPermissions
-	enterPermissions ifNil: [self enterPermissions: {#floor. #pickUpItem. #slime. #portal}].
+	enterPermissions ifNil: [self enterPermissions: {#floor. #pickUpItem. #slime. #portal . #track .}].
 	^ enterPermissions
